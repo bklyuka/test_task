@@ -20,24 +20,6 @@ class TestFilters:
 
         scent_page.verify_applied_filters(filter_names=value)
 
-    # def test_case_1(self, scent_page: ScentPage):
-    #     scent_page.highlights.select_value(value='Sale')
-    #     brand = scent_page.brand.select_value()
-    #     product_type = scent_page.product_type.select_value()
-    #     for_whom = scent_page.for_whom.select_value()
-    #
-    #     scent_page.verify_applied_filters(sorted(['Sale', brand, product_type, for_whom]))
-    #     expect(scent_page.present_for.element).not_to_be_visible()
-    #
-    # def test_case_2(self, scent_page: ScentPage):
-    #     scent_page.highlights.select_value(value='NEU')
-    #     brand = scent_page.brand.select_value()
-    #     product_type = scent_page.product_type.select_value()
-    #     for_whom = scent_page.for_whom.select_value()
-    #
-    #     scent_page.verify_applied_filters(sorted(['NEU', brand, product_type, for_whom]))
-    #     expect(scent_page.present_for.element).not_to_be_visible()
-
     @pytest.mark.parametrize("highlight", ("Sale", "NEU"))
     def test_case_1_and_2(self, scent_page: ScentPage, highlight):
         scent_page.highlights.select_value(value=highlight)
