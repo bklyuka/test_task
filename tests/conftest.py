@@ -5,12 +5,8 @@ from src.pages.home_page import HomePage
 
 
 def pytest_addoption(parser):
-    parser.addoption(
-        "--browser_name",
-        action="store",
-        default="chrome",
-        help="select browser: chrome or firefox"
-    )
+    parser.addoption("--browser_name", action="store", default="chrome", help="select browser: chrome or firefox")
+    parser.addini("headless", default="False", help="Run tests without displaying UI of browser")
 
 
 @pytest.fixture(scope="session")
@@ -22,12 +18,14 @@ def playwright():
 @pytest.fixture(scope="class")
 def browser(request, playwright: Playwright):
     browser_name = request.config.getoption("--browser_name")
+    headless = request.config.getini("headless") == 'True'
+
     if browser_name == "firefox":
-        browser = playwright.firefox.launch(headless=False)
+        browser = playwright.firefox.launch(headless=headless)
     elif browser_name == "chrome":
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch(headless=headless)
     else:
-        raise ValueError("Unsupported browser type. Supported types: chrome, firefox")
+        raise ValueError(f"Unsupported browser type `{browser_name}`. Supported types: chrome, firefox")
     yield browser
     browser.close()
 
