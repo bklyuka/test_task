@@ -37,14 +37,8 @@ class ScentPage(BasePage):
     def present_for(self) -> DropDown:
         return DropDown(page=self.page, name="Geschenk für")
 
-    # def verify_applied_filters(self, filter_names: List[str]):
-    #     for locator, filer_name in zip(self.filter.all(), filter_names):
-    #         expect(locator).to_be_visible()
-    #         expect(locator).to_have_text(filer_name)
-
     def verify_applied_filters(self, filter_names: Union[str, List[str]]):
-        if isinstance(filter_names, str):
-            filter_names = [filter_names]
+        filter_names = [filter_names] if isinstance(filter_names, str) else filter_names
 
         for locator, filter_name in zip(self.filter.all(), filter_names):
             expect(locator).to_be_visible()
