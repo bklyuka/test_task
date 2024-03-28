@@ -48,3 +48,4 @@ def page(context: BrowserContext):
 @pytest.fixture(scope="class", autouse=True)
 def get_home_page(page):
     HomePage(page).open(close_cookie=True)
+    # HomePage(page).open()

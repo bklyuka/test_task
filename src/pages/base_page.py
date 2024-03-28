@@ -17,3 +17,13 @@ class BasePage:
             self.page.get_by_role(role="button", name="Alle erlauben").click()
         self.page.wait_for_load_state()
         return self
+
+    # def open(self):
+    #     url = urljoin(self.base_url, self.relative_url) if self.relative_url else self.base_url
+    #     self.page.goto(url=url)
+    #     self.page.add_locator_handler(
+    #         self.page.get_by_role(role="dialog"),
+    #         lambda: self.page.get_by_role(role="button", name="Alle erlauben").click(),
+    #     )
+    #     self.page.wait_for_load_state()
+    #     return self
