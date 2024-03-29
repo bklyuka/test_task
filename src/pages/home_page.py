@@ -9,6 +9,3 @@ class HomePage(BasePage):
 
         self.filter = self.page.locator(".selected-facets__value")
 
-    def select_header_menu_item(self, header_name: str):
-        self.page.locator(selector="li", has_text=header_name).click()
-        return self

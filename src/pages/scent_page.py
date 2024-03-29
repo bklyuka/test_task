@@ -3,11 +3,11 @@ from typing import List, Union
 from playwright.sync_api import Page, expect
 
 from src.components.facet import Facet, FacetInput
+from src.components.header import Header
 from src.pages.base_page import BasePage
 
 
 class ScentPage(BasePage):
-    PAGE_TITLE = "Parfüm & Düfte ✔️ online kaufen » für Sie & Ihn | DOUGLAS"
 
     def __init__(self, page: Page):
         super().__init__(page)
@@ -15,6 +15,11 @@ class ScentPage(BasePage):
 
         self.filter = self.page.locator(".selected-facets__value")
         self.more_less_button = self.page.locator(".facet-list__show-more")
+        self.page_title = "Parfüm & Düfte ✔️ online kaufen » für Sie & Ihn | DOUGLAS"
+
+    @property
+    def header(self) -> Header:
+        return Header(page=self.page)
 
     @property
     def product_type(self) -> Facet:
